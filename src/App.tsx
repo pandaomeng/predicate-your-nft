@@ -1,12 +1,5 @@
 import React from 'react';
-import Predicate from './components/Predicate';
 
-function App() {
-  return (
-    <div className="App">
-      <Predicate></Predicate>
-    </div>
-  );
-}
+const App: React.FC = () => <div className="App" />;
 
 export default App;

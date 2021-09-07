@@ -12,14 +12,35 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
-  rules: {
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
-  },
+  plugins: ['react', '@typescript-eslint', 'react-hooks'],
   settings: {
     'import/resolver': {
       typescript: {},
     },
+  },
+  rules: {
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['error'],
+    // '@typescript-eslint/explicit-function-return-type': [
+    //   'error',
+    //   {
+    //     allowExpressions: true,
+    //   },
+    // ],
+    'max-len': ['warn', { code: 100 }],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react/prop-types': 'off',
   },
 };

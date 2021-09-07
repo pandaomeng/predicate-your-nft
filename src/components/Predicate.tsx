@@ -29,7 +29,7 @@ export default function Predicate() {
   useEffect(() => {
     const contract = new web3.eth.Contract(
       FACTORY_ABI,
-      '0xa39fb2c494b457593f9cbbef4a02f799330ddfd8'
+      '0xa39fb2c494b457593f9cbbef4a02f799330ddfd8',
     );
 
     contract.methods.tokenURI('');
