@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import Web3 from 'web3'
 import _ from 'lodash'
 import { Pagination, Input, message } from 'antd'
-import './Predicate.css'
+import './Predict.css'
 import { Contract } from 'web3-eth-contract'
 import WowLootABI from './WowLootABI'
 
@@ -20,7 +20,7 @@ const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545')
 
 const PAGE_SIZE = 100
 
-const Predicate: React.FC = () => {
+const Predict: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [total, setTotal] = useState(10000)
   const [loading, setLoading] = useState(false)
@@ -159,4 +159,4 @@ const Predicate: React.FC = () => {
   )
 }
 
-export default Predicate
+export default Predict
