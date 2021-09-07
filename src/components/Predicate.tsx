@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Web3 from 'web3'
 import { AbiItem } from 'web3-utils'
+import _ from 'lodash'
 import './Predicate.css'
 
 interface NFTMetadata {
@@ -29,6 +30,8 @@ const Predicate: React.FC = () => {
   // const images =
   const [nfts, setNfts] = useState<NFTMetadata[]>([])
 
+  const setNftThrottle = useMemo(() => _.throttle(setNfts, 500), [setNfts])
+
   const query = async () => {
     const contract = new web3.eth.Contract(FACTORY_ABI, '0xa39fb2c494b457593f9cbbef4a02f799330ddfd8')
 
@@ -50,8 +53,7 @@ const Predicate: React.FC = () => {
               image: json.image,
               description: json.description,
             }
-            console.log(result)
-            setNfts([...result])
+            setNftThrottle([...result])
           } catch (e) {
             console.error(e)
           }
@@ -75,7 +77,7 @@ const Predicate: React.FC = () => {
   return (
     <div style={{ display: 'flex', width: '100%', flexWrap: 'wrap' }}>
       {nfts.map(each => (
-        <div style={{ width: 300, padding: 20, display: 'flex', flexDirection: 'column' }}>
+        <div key={each.tokenId} style={{ width: 300, padding: 20, display: 'flex', flexDirection: 'column' }}>
           <div>
             <img
               key={each.tokenId}
