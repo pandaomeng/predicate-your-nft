@@ -46,8 +46,13 @@ const Predicate: React.FC = () => {
       batch.add(
         contract.methods.tokenURI(tokenId).call.request(null, (error: Error, res: string) => {
           try {
-            const dataPart = res.slice('data:application/json;base64,'.length)
-            const json = JSON.parse(atob(dataPart))
+            let json: any = {}
+            if (res.indexOf('data:application/json;base64,') === 0) {
+              const dataPart = res.slice('data:application/json;base64,'.length)
+              json = JSON.parse(atob(dataPart))
+            } else {
+              // TODO: 用 axios 去读取
+            }
             result[i] = {
               tokenId: `${tokenId}`,
               name: json.name,
@@ -129,6 +134,7 @@ const Predicate: React.FC = () => {
       />
 
       <div className="card-container">
+        {/* TODO: 占位符，不要坍缩 */}
         {nfts.map(each => (
           <div key={each.tokenId} style={{ width: 340, padding: 20, display: 'flex', flexDirection: 'column' }}>
             <div>
