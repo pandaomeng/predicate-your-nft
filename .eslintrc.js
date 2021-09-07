@@ -3,8 +3,13 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
   parser: '@typescript-eslint/parser',
+  extends: [
+    'plugin:react/recommended', 
+    "plugin:@typescript-eslint/recommended",
+    'airbnb', 
+    'prettier',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -38,9 +43,9 @@ module.exports = {
     //     allowExpressions: true,
     //   },
     // ],
-    'max-len': ['warn', { code: 100 }],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 'off',
+    'no-unused-vars': 'warn',
   },
 };
