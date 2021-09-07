@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/predicate-your-nft/static/css/main.149d75f9.chunk.css",
+    "main.js": "/predicate-your-nft/static/js/main.825aadf5.chunk.js",
+    "main.js.map": "/predicate-your-nft/static/js/main.825aadf5.chunk.js.map",
+    "runtime-main.js": "/predicate-your-nft/static/js/runtime-main.273dfc67.js",
+    "runtime-main.js.map": "/predicate-your-nft/static/js/runtime-main.273dfc67.js.map",
+    "static/css/2.a95be28f.chunk.css": "/predicate-your-nft/static/css/2.a95be28f.chunk.css",
+    "static/js/2.11980c9d.chunk.js": "/predicate-your-nft/static/js/2.11980c9d.chunk.js",
+    "static/js/2.11980c9d.chunk.js.map": "/predicate-your-nft/static/js/2.11980c9d.chunk.js.map",
+    "static/js/3.97c7047d.chunk.js": "/predicate-your-nft/static/js/3.97c7047d.chunk.js",
+    "static/js/3.97c7047d.chunk.js.map": "/predicate-your-nft/static/js/3.97c7047d.chunk.js.map",
+    "index.html": "/predicate-your-nft/index.html",
+    "static/css/2.a95be28f.chunk.css.map": "/predicate-your-nft/static/css/2.a95be28f.chunk.css.map",
+    "static/css/main.149d75f9.chunk.css.map": "/predicate-your-nft/static/css/main.149d75f9.chunk.css.map",
+    "static/js/2.11980c9d.chunk.js.LICENSE.txt": "/predicate-your-nft/static/js/2.11980c9d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.273dfc67.js",
+    "static/css/2.a95be28f.chunk.css",
+    "static/js/2.11980c9d.chunk.js",
+    "static/css/main.149d75f9.chunk.css",
+    "static/js/main.825aadf5.chunk.js"
+  ]
+}
