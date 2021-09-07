@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import Web3 from 'web3';
-import { AbiItem } from 'web3-utils';
 
 const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
 
-const FACTORY_ABI: AbiItem[] = [
+const FACTORY_ABI = [
   {
     inputs: [
       {
@@ -28,7 +27,7 @@ const FACTORY_ABI: AbiItem[] = [
 
 export default function Predicate() {
   useEffect(() => {
-    var contract = new web3.eth.Contract(
+    const contract = new web3.eth.Contract(
       FACTORY_ABI,
       '0xa39fb2c494b457593f9cbbef4a02f799330ddfd8'
     );
