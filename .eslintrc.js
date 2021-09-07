@@ -20,7 +20,9 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'react-hooks'],
   settings: {
     'import/resolver': {
-      typescript: {},
+      typescript: {
+        "project": "./tsconfig.json",
+      },
     },
   },
   rules: {
@@ -47,5 +49,6 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 'off',
     'no-unused-vars': 'warn',
+    'import/no-extraneous-dependencies': 'off'
   },
 };

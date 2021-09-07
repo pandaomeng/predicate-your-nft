@@ -4,17 +4,6 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-const a: string = 1 + 2
-const b: number = a
-
-interface Cat {
-  name: string
-}
-
-const cat: Cat = {
-  name: 1,
-}
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
