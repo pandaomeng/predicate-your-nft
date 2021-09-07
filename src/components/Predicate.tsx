@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import Web3 from 'web3'
 import _ from 'lodash'
-import { Pagination } from 'antd'
+import { Pagination, Input, message } from 'antd'
 import './Predicate.css'
+import { Contract } from 'web3-eth-contract'
 import WowLootABI from './WowLootABI'
+
+const { Search } = Input
 
 interface NFTMetadata {
   tokenId: string
@@ -13,14 +16,16 @@ interface NFTMetadata {
 }
 
 const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545')
-const contract = new web3.eth.Contract(WowLootABI, '0xa39fb2c494b457593f9cbbef4a02f799330ddfd8')
+// const contract = new web3.eth.Contract(WowLootABI, '0xa39fb2c494b457593f9cbbef4a02f799330ddfd8')
 
 const PAGE_SIZE = 100
 
 const Predicate: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
   const [total, setTotal] = useState(10000)
   const [loading, setLoading] = useState(false)
+  const [contract, setContract] = useState<Contract | null>(null)
+
   // const images =
   const [nfts, setNfts] = useState<NFTMetadata[]>([])
 
@@ -29,17 +34,19 @@ const Predicate: React.FC = () => {
   const query = async (page: number) => {
     // setLoading(true)
     setCurrentPage(page)
+
+    if (!contract) return
+
     const batch = new web3.BatchRequest()
 
     // 使用一个数组存结果
     const result: NFTMetadata[] = []
     for (let i = 0; i < PAGE_SIZE; i += 1) {
-      const tokenId = page * PAGE_SIZE + i + 1
+      const tokenId = (page - 1) * PAGE_SIZE + i + 1
       batch.add(
         contract.methods.tokenURI(tokenId).call.request(null, (error: Error, res: string) => {
-          const dataPart = res.slice('data:application/json;base64,'.length)
-
           try {
+            const dataPart = res.slice('data:application/json;base64,'.length)
             const json = JSON.parse(atob(dataPart))
             result[i] = {
               tokenId: `${tokenId}`,
@@ -70,18 +77,48 @@ const Predicate: React.FC = () => {
 
   useEffect(() => {
     // queryTotalSupply()
-    query(0)
-  }, [])
+    query(1)
+  }, [contract])
 
   const onPageChange = (newPage: number) => {
+    if (!contract) {
+      message.error('请先设置合约地址')
+      return
+    }
     setNfts([])
     setLoading(true)
     query(newPage)
   }
 
+  const onSearch = (value: string) => {
+    let address
+    if (value.indexOf('http') !== -1) {
+      address = value.split('/').pop()
+      if (!address) {
+        message.error('地址错误')
+        return
+      }
+    }
+    const newContract = new web3.eth.Contract(WowLootABI, address)
+    setContract(newContract)
+  }
+
   return (
     <div style={{ margin: 'auto' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 40 }}>
+        <Search
+          placeholder="请输入NFT合约地址"
+          onSearch={onSearch}
+          enterButton
+          style={{
+            width: 500,
+            margin: 'auto',
+          }}
+        />
+      </div>
+
       <Pagination
+        current={currentPage}
         defaultCurrent={1}
         total={total}
         pageSize={PAGE_SIZE}
