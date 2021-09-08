@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/predict-your-nft/static/css/main.cc71aa38.chunk.css",
-    "main.js": "/predict-your-nft/static/js/main.121cd534.chunk.js",
-    "main.js.map": "/predict-your-nft/static/js/main.121cd534.chunk.js.map",
-    "runtime-main.js": "/predict-your-nft/static/js/runtime-main.175a8f6c.js",
-    "runtime-main.js.map": "/predict-your-nft/static/js/runtime-main.175a8f6c.js.map",
+    "main.js": "/predict-your-nft/static/js/main.d92fb15c.chunk.js",
+    "main.js.map": "/predict-your-nft/static/js/main.d92fb15c.chunk.js.map",
+    "runtime-main.js": "/predict-your-nft/static/js/runtime-main.3af837f2.js",
+    "runtime-main.js.map": "/predict-your-nft/static/js/runtime-main.3af837f2.js.map",
     "static/css/2.a95be28f.chunk.css": "/predict-your-nft/static/css/2.a95be28f.chunk.css",
-    "static/js/2.2226f2cb.chunk.js": "/predict-your-nft/static/js/2.2226f2cb.chunk.js",
-    "static/js/2.2226f2cb.chunk.js.map": "/predict-your-nft/static/js/2.2226f2cb.chunk.js.map",
-    "static/js/3.b223b9fe.chunk.js": "/predict-your-nft/static/js/3.b223b9fe.chunk.js",
-    "static/js/3.b223b9fe.chunk.js.map": "/predict-your-nft/static/js/3.b223b9fe.chunk.js.map",
+    "static/js/2.fb48f3f1.chunk.js": "/predict-your-nft/static/js/2.fb48f3f1.chunk.js",
+    "static/js/2.fb48f3f1.chunk.js.map": "/predict-your-nft/static/js/2.fb48f3f1.chunk.js.map",
+    "static/js/3.c566f9e6.chunk.js": "/predict-your-nft/static/js/3.c566f9e6.chunk.js",
+    "static/js/3.c566f9e6.chunk.js.map": "/predict-your-nft/static/js/3.c566f9e6.chunk.js.map",
     "index.html": "/predict-your-nft/index.html",
     "static/css/2.a95be28f.chunk.css.map": "/predict-your-nft/static/css/2.a95be28f.chunk.css.map",
     "static/css/main.cc71aa38.chunk.css.map": "/predict-your-nft/static/css/main.cc71aa38.chunk.css.map",
-    "static/js/2.2226f2cb.chunk.js.LICENSE.txt": "/predict-your-nft/static/js/2.2226f2cb.chunk.js.LICENSE.txt"
+    "static/js/2.fb48f3f1.chunk.js.LICENSE.txt": "/predict-your-nft/static/js/2.fb48f3f1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.175a8f6c.js",
+    "static/js/runtime-main.3af837f2.js",
     "static/css/2.a95be28f.chunk.css",
-    "static/js/2.2226f2cb.chunk.js",
+    "static/js/2.fb48f3f1.chunk.js",
     "static/css/main.cc71aa38.chunk.css",
-    "static/js/main.121cd534.chunk.js"
+    "static/js/main.d92fb15c.chunk.js"
   ]
 }
