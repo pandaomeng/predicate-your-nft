@@ -17,6 +17,7 @@
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "antd": "^4.16.13",
+    "axios": "^0.21.4",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
     "babel-loader": "8.1.0",
@@ -46,6 +47,7 @@
     "jest-circus": "26.6.0",
     "jest-resolve": "26.6.0",
     "jest-watch-typeahead": "0.6.1",
+    "jsonp": "^0.2.1",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "0.11.3",
     "optimize-css-assets-webpack-plugin": "5.0.4",
@@ -97,6 +99,7 @@
     ]
   },
   "devDependencies": {
+    "@types/jsonp": "^0.2.1",
     "@types/lodash": "^4.14.172",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",

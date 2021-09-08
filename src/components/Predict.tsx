@@ -5,6 +5,8 @@ import { Pagination, Input, message } from 'antd'
 import './Predict.css'
 import { Contract } from 'web3-eth-contract'
 import qs from 'query-string'
+// import axios from 'axios'
+import jsonp from 'jsonp'
 import WowLootABI from './WowLootABI'
 
 const { Search } = Input
@@ -19,7 +21,7 @@ interface NFTMetadata {
 const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545')
 // const contract = new web3.eth.Contract(WowLootABI, '0xa39fb2c494b457593f9cbbef4a02f799330ddfd8')
 
-const PAGE_SIZE = 100
+const PAGE_SIZE = 1
 
 const Predict: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -46,14 +48,32 @@ const Predict: React.FC = () => {
     for (let i = 0; i < PAGE_SIZE; i += 1) {
       const tokenId = (page - 1) * PAGE_SIZE + i + 1
       batch.add(
-        contract.methods.tokenURI(tokenId).call.request(null, (error: Error, res: string) => {
+        contract.methods.tokenURI(tokenId).call.request(null, async (error: Error, res: string) => {
           try {
             let json: any = {}
             if (res.indexOf('data:application/json;base64,') === 0) {
               const dataPart = res.slice('data:application/json;base64,'.length)
               json = JSON.parse(atob(dataPart))
+            } else if (res.indexOf('http') === 0) {
+              // json = await axios.get(res, {
+              //   headers: {
+              //     'Content-Type': 'text/plain',
+              //     Accept: 'text/plain',
+              //   },
+              // })
+              // json = JSON.parse(json)
+              json = await new Promise((resolve, reject) => {
+                jsonp(res, undefined, (err, jsonpResult) => {
+                  if (err) {
+                    reject(err)
+                  }
+                  resolve(jsonpResult)
+                })
+              })
+            } else if (res.indexOf('ipfs') === 0) {
+              // TODO: IPFS
             } else {
-              // TODO: 用 axios 去读取
+              throw new Error('无法解析 NFT 内容')
             }
             result[i] = {
               tokenId: `${tokenId}`,
