@@ -4,6 +4,7 @@ import _ from 'lodash'
 import { Pagination, Input, message } from 'antd'
 import './Predict.css'
 import { Contract } from 'web3-eth-contract'
+import qs from 'query-string'
 import WowLootABI from './WowLootABI'
 
 const { Search } = Input
@@ -25,6 +26,7 @@ const Predict: React.FC = () => {
   const [total, setTotal] = useState(10000)
   const [loading, setLoading] = useState(false)
   const [contract, setContract] = useState<Contract | null>(null)
+  const [searchValue, setSearchValue] = useState('')
 
   // const images =
   const [nfts, setNfts] = useState<NFTMetadata[]>([])
@@ -81,7 +83,16 @@ const Predict: React.FC = () => {
   // }
 
   useEffect(() => {
-    // queryTotalSupply()
+    const { search } = window.location
+    const { address } = qs.parse(search)
+    if (address && typeof address === 'string') {
+      const newContract = new web3.eth.Contract(WowLootABI, address)
+      setSearchValue(address)
+      setContract(newContract)
+    }
+  }, [])
+
+  useEffect(() => {
     query(1)
   }, [contract])
 
@@ -96,7 +107,7 @@ const Predict: React.FC = () => {
   }
 
   const onSearch = (value: string) => {
-    let address
+    let address: string | undefined = value
     if (value.indexOf('http') !== -1) {
       address = value.split('/').pop()
       if (!address) {
@@ -108,6 +119,10 @@ const Predict: React.FC = () => {
     setContract(newContract)
   }
 
+  const handleSearchChange = (e: any) => {
+    setSearchValue(e.value)
+  }
+
   return (
     <div style={{ margin: 'auto' }}>
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 40 }}>
@@ -115,6 +130,8 @@ const Predict: React.FC = () => {
           placeholder="请输入NFT合约地址"
           onSearch={onSearch}
           enterButton
+          value={searchValue}
+          onChange={handleSearchChange}
           style={{
             width: 500,
             margin: 'auto',
