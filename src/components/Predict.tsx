@@ -5,8 +5,7 @@ import { Pagination, Input, message } from 'antd'
 import './Predict.css'
 import { Contract } from 'web3-eth-contract'
 import qs from 'query-string'
-// import axios from 'axios'
-import jsonp from 'jsonp'
+import axios from 'axios'
 import WowLootABI from './WowLootABI'
 
 const { Search } = Input
@@ -55,21 +54,10 @@ const Predict: React.FC = () => {
               const dataPart = res.slice('data:application/json;base64,'.length)
               json = JSON.parse(atob(dataPart))
             } else if (res.indexOf('http') === 0) {
-              // json = await axios.get(res, {
-              //   headers: {
-              //     'Content-Type': 'text/plain',
-              //     Accept: 'text/plain',
-              //   },
-              // })
+              // FIXME: 跨域拿不到数据
+              throw new Error('暂不支持 http')
+              // json = await axios.get(res)
               // json = JSON.parse(json)
-              json = await new Promise((resolve, reject) => {
-                jsonp(res, undefined, (err, jsonpResult) => {
-                  if (err) {
-                    reject(err)
-                  }
-                  resolve(jsonpResult)
-                })
-              })
             } else if (res.indexOf('ipfs') === 0) {
               // TODO: IPFS
             } else {
