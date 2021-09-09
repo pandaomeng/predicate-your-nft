@@ -20,7 +20,7 @@ interface NFTMetadata {
 const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545')
 // const contract = new web3.eth.Contract(WowLootABI, '0xa39fb2c494b457593f9cbbef4a02f799330ddfd8')
 
-const PAGE_SIZE = 1
+const PAGE_SIZE = 100
 
 const Predict: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
@@ -47,7 +47,7 @@ const Predict: React.FC = () => {
     for (let i = 0; i < PAGE_SIZE; i += 1) {
       const tokenId = (page - 1) * PAGE_SIZE + i + 1
       batch.add(
-        contract.methods.tokenURI(tokenId).call.request(null, async (error: Error, res: string) => {
+        contract.methods.tokenURI(tokenId).call.request(null, (error: Error, res: string) => {
           try {
             let json: any = {}
             if (res.indexOf('data:application/json;base64,') === 0) {
